@@ -14,4 +14,27 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+  callbacks: {
+    signIn: async ({ user }) => {
+      const dbUser = await prisma.user.findUnique({
+        where: {
+          email: user.email as string,
+        },
+      });
+
+      if (dbUser?.admin === true) {
+        user.admin = true;
+      } else {
+        user.admin = false;
+      }
+
+      return true;
+    },
+
+    session: async ({ user, session }) => {
+      session.admin = user.admin;
+
+      return session;
+    },
+  },
 });

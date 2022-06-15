@@ -1,9 +1,10 @@
 interface IProps {
   children: React.ReactNode;
   variant: 'solid' | 'outline';
+  onClick?: () => void;
 }
 
-const Button = ({ children, variant }: IProps) => {
+const Button = ({ children, variant, onClick }: IProps) => {
   let btnStyle =
     'border-2 border-red-500 py-1.5 px-5 text-red-500 hover:bg-red-500 hover:text-white transition-colors duration-200 ease-in-out';
 
@@ -12,7 +13,7 @@ const Button = ({ children, variant }: IProps) => {
   }
 
   return (
-    <button className={`${btnStyle}`}>
+    <button className={`${btnStyle}`} onClick={onClick}>
       <span className='font-bold'>{children}</span>
     </button>
   );

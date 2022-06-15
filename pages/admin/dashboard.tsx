@@ -7,8 +7,6 @@ interface IProps {
 }
 
 const AdminDashboard = ({ admin }: IProps) => {
-  const { data: session } = useSession();
-
   if (!admin) {
     return <p>You are not authorized.</p>;
   }
