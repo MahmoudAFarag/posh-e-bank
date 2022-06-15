@@ -28,11 +28,18 @@ export default NextAuth({
         user.admin = false;
       }
 
+      if (dbUser?.active === true) {
+        user.active = true;
+      } else {
+        user.active = false;
+      }
+
       return true;
     },
 
     session: async ({ user, session }) => {
       session.admin = user.admin;
+      session.active = user.active;
 
       return session;
     },

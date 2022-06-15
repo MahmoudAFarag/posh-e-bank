@@ -8,8 +8,6 @@ import { Button } from '@components/ui';
 const Header = () => {
   const { data: session, status } = useSession();
 
-  console.log(session);
-
   return (
     <header className='h-16 border-t-4 border-red-700 relative flex items-center bg-gray-50 p-2'>
       <div className='mr-auto'>
